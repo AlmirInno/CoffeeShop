@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Caffè</title>
+</head>
+
+<body>
+    <id id="overlay"></id>
+    <main>
+        <div id="overlay"></div>
+
+        <div id="imagecontenitore">
+            <figure><img src="img/caffe.jpg" alt="tazza_di_caffé" id="image"></figure>
+        </div>
+
+        <div class="info">
+            <div>
+                <h1>Nespresso</h1>
+                <h4>Volluto</h4>
+            </div>
+
+            <div class="pay">
+                5.00 <small>CHF</small>
+            </div>
+
+            <div class="text">
+                <h3>Benefici</h3>
+
+                <ul>
+                    <li>Fa rimanere svegli</li>
+                    <li>Fa crescere i bambini velocemente</li>
+                </ul>
+            </div>
+
+            <div><button type="submit" onclick="myPrompt()"> Aquista ora</button></div>
+            <div id="Messaggio"></div>
+        </div>
+
+    </main>
+
+    <script>
+        function myPrompt() {
+
+            // Mostra il messaggio nel div con l'id "Messaggio"
+            const messaggioDiv = document.getElementById('Messaggio');
+            messaggioDiv.innerHTML = '<p>Al momento non è disponibile questa opzione</p>';
+            messaggioDiv.style.display = 'block';
+            messaggioDiv.style.margin = 0;
+
+            // Imposta un timer per chiudere l'avviso e rimuovere la sfocatura
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                messaggioDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        const image = document.getElementById('image');
+        const overlay = document.getElementById('overlay');
+
+        image.addEventListener('click', function () {
+            this.classList.toggle('enlarged');
+            if (this.classList.contains('enlarged')) {
+                setTimeout(() => {
+                    overlay.classList.add('active');
+                    overlay.style.display = 'block';
+                }, 1000);
+            } else {
+                overlay.classList.remove('active');
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 1000); // Attendi la fine della transizione prima di nascondere
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>
